@@ -2,13 +2,22 @@
  * Created by caiqu on 19/08/2017.
  */
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
-import {Button, Card, CardSection} from './common';
+import {Input,Button, Card, CardSection} from './common';
 
 class Login extends Component {
-    render(){
-        return(
+
+    state = {text: ''};
+
+    render() {
+        return (
             <Card>
+                <CardSection>
+                    <Input
+                        onChangeText={onChangeText}
+                        style={{height: 30, width: 100}}
+                        value={text}/>
+                </CardSection>
+
                 <CardSection>
                 </CardSection>
 
