@@ -6,16 +6,17 @@ import {Input,Button, Card, CardSection} from './common';
 
 class Login extends Component {
 
-    state = {text: ''};
+    state = {email: ''};
 
     render() {
         return (
             <Card>
                 <CardSection>
                     <Input
-                        onChangeText={onChangeText}
-                        style={{height: 30, width: 100}}
-                        value={text}/>
+                        placeholder="example@gmail.com"
+                        label="Email"
+                        value={this.state.email}
+                        onChangeText={email => this.setState({email})}/>
                 </CardSection>
 
                 <CardSection>
