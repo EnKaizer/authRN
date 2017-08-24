@@ -15,24 +15,24 @@ class Login extends Component {
         this.setState({error: '', loading: true});
 
         firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(this.onLoginSuccess())
-        .catch(() => {
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(() => this.onLoginSuccess())
-            .catch(this.onLoginFail())
-        })
+            .then(() => {this.onLoginSuccess()})
+            .catch(() => {
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(() => this.onLoginSuccess())
+                .catch(() => {this.onLoginFail()})
+            })
     };
 
     renderButton(){
-        return this.state.loading ? 
-        <Spinner size="small"/> : 
-        (<Button onPress={this.onButtonPress}>
-                        Log in
-         </Button>)
+        if(this.state.loading){
+            return <Spinner size="small"/>
+        }else{
+            return <Button onPress={this.onButtonPress}>Log in</Button>
+        }
     };
 
     onLoginSuccess = () => {
-        this.setState({this.state})
+        this.setState(this.state)
     };
 
     onLoginFail = () => {
@@ -49,6 +49,7 @@ class Login extends Component {
                         value={this.state.email}
                         onChangeText={email => this.setState({email})}/>
                 </CardSection>
+                
                 <CardSection>
                     <Input
                         secureTextEntry
@@ -57,6 +58,7 @@ class Login extends Component {
                         value={this.state.password}
                         onChangeText={password => this.setState({password})}/>
                 </CardSection>
+
                 <Text style={styles.errorTextStyle}>
                     {this.state.error}
                 </Text>
