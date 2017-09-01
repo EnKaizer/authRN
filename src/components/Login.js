@@ -23,7 +23,7 @@ class Login extends Component {
             })
     };
 
-    renderButton(){
+    renderButton = () => {
         if(this.state.loading){
             return <Spinner size="small"/>
         }else{
@@ -32,7 +32,12 @@ class Login extends Component {
     };
 
     onLoginSuccess = () => {
-        this.setState(this.state)
+        this.setState({
+                    error: '', 
+                    email: '',
+                    password: '',
+                    loading: false,
+                    })
     };
 
     onLoginFail = () => {
